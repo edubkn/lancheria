@@ -1,4 +1,4 @@
-package br.com.lancheria.model;
+package br.com.lancheria.model.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,8 +11,6 @@ import java.util.Set;
 @NamedEntityGraph(name = "User.detail", attributeNodes = @NamedAttributeNode("permissions"))
 public class User {
 
-    private static final long serialVersionUID = 1009543439831777570L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,9 +18,21 @@ public class User {
     private String name;
     @ManyToMany
     @JoinTable(name = "user_permission", joinColumns = {
-            @JoinColumn(name = "id_user", nullable = false) }, inverseJoinColumns = {
-            @JoinColumn(name = "id_permission", nullable = false) })
+            @JoinColumn(name = "user_id", nullable = false) }, inverseJoinColumns = {
+            @JoinColumn(name = "permission_id", nullable = false) })
     private Set<Permission> permissions;
+
+    public User(){}
+
+    public User(String facebookId) {
+        this(null, facebookId, null);
+    }
+
+    private User(Long id, String facebookId, String name) {
+        this.id = id;
+        this.facebookId = facebookId;
+        this.name = name;
+    }
 
     public void addPermission(Permission permission) {
         if (this.permissions == null) {

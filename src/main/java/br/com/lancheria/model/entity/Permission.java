@@ -1,4 +1,4 @@
-package br.com.lancheria.model;
+package br.com.lancheria.model.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

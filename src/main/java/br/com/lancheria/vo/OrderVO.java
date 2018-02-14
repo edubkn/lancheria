@@ -1,7 +1,7 @@
 package br.com.lancheria.vo;
 
 import br.com.lancheria.enums.PaymentType;
-import br.com.lancheria.model.Snack;
+import br.com.lancheria.model.entity.Snack;
 import br.com.lancheria.validator.constraint.IsHundredPercent;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class OrderVO implements Serializable {
     private static final long serialVersionUID = -6345768865088219598L;
 
     @NotEmpty
-    private List<Snack> snacks;
+    private List<SnackVO> snacks;
 
     @NotBlank
     private String userFacebookId;
@@ -30,15 +31,14 @@ public class OrderVO implements Serializable {
 
     private Boolean needChange = false;
 
-    @NotEmpty
     @IsHundredPercent
     private Map<Integer, BigDecimal> paymentSplit;
 
-    public List<Snack> getSnacks() {
+    public List<SnackVO> getSnacks() {
         return snacks;
     }
 
-    public void setSnacks(List<Snack> snacks) {
+    public void setSnacks(List<SnackVO> snacks) {
         this.snacks = snacks;
     }
 
@@ -80,5 +80,12 @@ public class OrderVO implements Serializable {
 
     public void setPaymentSplit(Map<Integer, BigDecimal> paymentSplit) {
         this.paymentSplit = paymentSplit;
+    }
+
+    public void addSnack(SnackVO snack) {
+        if (this.snacks == null) {
+            this.snacks = new ArrayList<>();
+        }
+        this.snacks.add(snack);
     }
 }

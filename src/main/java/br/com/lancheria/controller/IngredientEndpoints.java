@@ -17,7 +17,7 @@ public class IngredientEndpoints {
     public static final String PATH_CHEESES = "/cheeses";
     public static final String PATH_FILLINGS = "/fillings";
 
-    private final IngredientService ingredientService;
+    private IngredientService ingredientService;
 
     public IngredientEndpoints(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
@@ -25,17 +25,17 @@ public class IngredientEndpoints {
 
     @GetMapping(PATH_BREADS)
     public ResponseEntity<?> getBreads() {
-        return ResponseEntity.ok(ingredientService.getBreads());
+        return ResponseEntity.ok(ingredientService.getIngredientsByType(1));
     }
 
     @GetMapping(PATH_CHEESES)
     public ResponseEntity<?> getCheeses() {
-        return ResponseEntity.ok(ingredientService.getCheeses());
+        return ResponseEntity.ok(ingredientService.getIngredientsByType(2));
     }
 
     @GetMapping(PATH_FILLINGS)
     public ResponseEntity<?> getFillings() {
-        return ResponseEntity.ok(ingredientService.getFillings());
+        return ResponseEntity.ok(ingredientService.getIngredientsByType(3));
     }
 
 }

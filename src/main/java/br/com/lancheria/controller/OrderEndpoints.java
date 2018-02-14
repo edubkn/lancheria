@@ -1,7 +1,10 @@
 package br.com.lancheria.controller;
 
+import br.com.lancheria.exception.OrderCalculationException;
 import br.com.lancheria.service.OrderService;
 import br.com.lancheria.vo.OrderVO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +20,15 @@ public class OrderEndpoints {
 
     public static final String PATH_ORDER = "/order";
 
-    private final OrderService orderService;
+    private OrderService orderService;
 
     public OrderEndpoints(OrderService orderService) {
         this.orderService = orderService;
     }
 
     @PostMapping
-    public void placeOrder(@RequestBody @Valid OrderVO order) {
-
+    public ResponseEntity<?> placeOrder(@RequestBody @Valid OrderVO order) throws OrderCalculationException {
+        Long orderId = orderService.placeOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderId);
     }
 }

@@ -16,7 +16,7 @@ public class SnackVO implements Serializable {
     private Boolean doubleCheese = false;
     @NotNull
     private Long fillingId;
-    private Boolean doublefilling = false;
+    private Boolean doubleFilling = false;
     @NotNull
     private Long saladId;
     private Boolean doubleSalad = false;
@@ -55,12 +55,12 @@ public class SnackVO implements Serializable {
         this.fillingId = fillingId;
     }
 
-    public Boolean getDoublefilling() {
-        return doublefilling;
+    public Boolean getDoubleFilling() {
+        return doubleFilling;
     }
 
-    public void setDoublefilling(Boolean doublefilling) {
-        this.doublefilling = doublefilling;
+    public void setDoubleFilling(Boolean doubleFilling) {
+        this.doubleFilling = doubleFilling;
     }
 
     public Long getSaladId() {
@@ -93,5 +93,12 @@ public class SnackVO implements Serializable {
 
     public void setCondimentIds(Set<Long> condimentIds) {
         this.condimentIds = condimentIds;
+    }
+
+    public void addSauce(Long sauceId) {
+        if (this.sauceIds == null) {
+            this.sauceIds = new HashSet<>();
+        }
+        this.sauceIds.add(sauceId);
     }
 }

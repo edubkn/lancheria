@@ -1,5 +1,6 @@
-package br.com.lancheria.model;
+package br.com.lancheria.model.repository;
 
+import br.com.lancheria.model.entity.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 

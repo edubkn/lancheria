@@ -1,4 +1,4 @@
-package br.com.lancheria.model;
+package br.com.lancheria.model.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,8 +15,14 @@ public class Ingredient {
     private BigDecimal value;
 
     @ManyToOne
-    @JoinColumn(name = "id_type")
+    @JoinColumn(name = "type_id")
     private IngredientType type;
+
+    public Ingredient(){}
+
+    public Ingredient(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

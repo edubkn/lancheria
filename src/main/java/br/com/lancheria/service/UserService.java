@@ -1,7 +1,7 @@
 package br.com.lancheria.service;
 
-import br.com.lancheria.model.User;
-import br.com.lancheria.model.UserRepository;
+import br.com.lancheria.model.entity.User;
+import br.com.lancheria.model.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
