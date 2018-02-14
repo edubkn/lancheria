@@ -32,6 +32,7 @@ public class OrderService {
     public Long placeOrder(OrderVO orderVO) throws OrderCalculationException {
         Order order = OrderConverter.toEntity(orderVO);
         try {
+            //TODO: tratar usuário inexistente
             order.setUser(userRepository.findByFacebookId(orderVO.getUserFacebookId()));
             order.setTotal(calculateValue(order));
             return orderRepository.save(order).getId();

@@ -44,8 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return map -> {
             String facebookId = (String) map.get("id");
             User user = userRepository.findByFacebookId(facebookId);
-            return new AuthUserVO(user.getFacebookId(), user.getName(), user.getPermissions().stream()
-                    .map(Permission::getName).collect(Collectors.toList()));
+            if (user != null) {
+                return new AuthUserVO(user.getFacebookId(), user.getName(), user.getPermissions().stream()
+                        .map(Permission::getName).collect(Collectors.toList()));
+            }
+            return map;
         };
     }
 }
